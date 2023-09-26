@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 // import { AuthContext } from '../../contexts/AuthContext'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import nutriLogo from '../../assets/logoNutriVidas.svg'
 import { BsFillMoonFill } from 'react-icons/bs'
 import { toastAlerta } from '../../utils/toastAlerta'
 import { AuthContext } from '../../contexts/AuthContext'
@@ -49,11 +48,6 @@ function Navbar() {
           <nav className="flex items-center justify-between py-4 lg:py-4 px-4 xl:px-48 border-b" aria-label="Global">
             <div className="flex lg:flex-1">
               <Link to='/' className="-m-1.5 p-1.5 flex items-center gap-x-4 font-black font text-xl"><span className="sr-only">Your Company</span>
-                <img
-                  className="h-12 w-auto"
-                  src={nutriLogo}
-                  alt=""
-                />
                 <p className='hover:text-[#03A678] dark:text-white transiton-all ease-in-out duration-300'>Horti+</p>
               </Link>
             </div>
@@ -101,11 +95,6 @@ function Navbar() {
             <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white transition-all ease-in-out duration-600">
               <div className="flex items-center justify-between">
                 <Link to='/home' className="-m-1.5 p-1.5 flex items-center gap-x-4 font-black font text-xl"><span className="sr-only">Your Company</span>
-                  <img
-                    className="h-12 w-auto"
-                    src={nutriLogo}
-                    alt=""
-                  />
                   <p className='hover:text-[#03A678] dark:text-white text-black transiton-all ease-in-out duration-300'>Horti+</p>
                 </Link>
                 <button
@@ -146,11 +135,6 @@ function Navbar() {
           <nav className="flex items-center justify-between py-4 lg:py-4 px-4 xl:px-48 border-b" aria-label="Global">
             <div className="flex lg:flex-1">
               <Link to='/home' className="-m-1.5 p-1.5 flex items-center gap-x-4 font-black font text-xl"><span className="sr-only">Your Company</span>
-                <img
-                  className="h-12 w-auto"
-                  src={nutriLogo}
-                  alt=""
-                />
                 <p className='hover:text-[#03A678] dark:text-white transiton-all ease-in-out duration-300'>Horti+</p>
               </Link>
             </div>
@@ -204,11 +188,6 @@ function Navbar() {
             <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white dark:bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white transition-all ease-in-out duration-600">
               <div className="flex items-center justify-between">
                 <Link to='/home' className="-m-1.5 p-1.5 flex items-center gap-x-4 font-black font text-xl"><span className="sr-only">Your Company</span>
-                  <img
-                    className="h-12 w-auto"
-                    src={nutriLogo}
-                    alt=""
-                  />
                   <p className='hover:text-[#03A678] dark:text-white text-black transiton-all ease-in-out duration-300'>Horti+</p>
                 </Link>
                 <button
