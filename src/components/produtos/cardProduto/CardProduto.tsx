@@ -4,6 +4,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import Produto from '../../../models/Produto'
 // import { toastAlerta } from '../../../utils/toastAlerta'
 import { useContext, useEffect, useState } from 'react';
+import { toastAlerta } from '../../../utils/toastAlerta';
 
 interface CardProdutoProps {
     prod: Produto
@@ -40,16 +41,16 @@ function CardProduto({ prod, noCarrinho, fornecedor }: CardProdutoProps) {
                         <p className="mb-3 font-bold text-gray-700 dark:text-gray-300">Quantidade: {valor}</p>
                         {isAdmin ? (
                             <>
-                            <h1 className='font-bold dark:text-white'>Usuário Admin</h1>
-                            <div className='flex justify-evenly mt-2'>
-                                <Link to={`/editarProduto/${prod.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#03A678] transition-all duration-300 ease-in-out rounded-lg hover:bg-[#014040] focus:outline-none dark:bg-verde_claro2 dark:hover:bg-white dark:hover:text-black" >
-                                    Editar
-                                </Link>
-                                <Link to={`/deletarProduto/${prod.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 transition-all duration-300 ease-in-out rounded-lg hover:bg-red-900 focus:outline-none dark:bg-red-600 dark:hover:bg-white dark:hover:text-black">
-                                    Deletar
-                                </Link>
-                            </div>
-                        </>
+                                <h1 className='font-bold dark:text-white'>Usuário Admin</h1>
+                                <div className='flex justify-evenly mt-2'>
+                                    <Link to={`/editarProduto/${prod.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#03A678] transition-all duration-300 ease-in-out rounded-lg hover:bg-[#014040] focus:outline-none dark:bg-verde_claro2 dark:hover:bg-white dark:hover:text-black" >
+                                        Editar
+                                    </Link>
+                                    <Link to={`/deletarProduto/${prod.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-600 transition-all duration-300 ease-in-out rounded-lg hover:bg-red-900 focus:outline-none dark:bg-red-600 dark:hover:bg-white dark:hover:text-black">
+                                        Deletar
+                                    </Link>
+                                </div>
+                            </>
                         ) : noCarrinho ? (
                             <>
                                 <div className='mt-2 flex flex-col items-center'>
@@ -80,8 +81,12 @@ function CardProduto({ prod, noCarrinho, fornecedor }: CardProdutoProps) {
                                 <div className='mt-2 flex flex-col items-center'>
                                     <button className="items-center px-3 py-2 text-sm font-medium text-center text-white bg-[#03A678] transition-all duration-300 ease-in-out rounded-lg hover:bg-[#014040] focus:outline-none dark:bg-verde_claro2 dark:hover:bg-white dark:hover:text-black"
                                         onClick={() => {
-                                            adicionarProduto(prod)
-                                            setValor(valor - 1);
+                                            if (valor > 0) {
+                                                adicionarProduto(prod);
+                                                setValor(valor - 1);
+                                            } else {
+                                                toastAlerta("Produto esgotado", 'erro');
+                                            }
                                         }}>
                                         Adicionar 🛒
                                     </button>
@@ -90,7 +95,7 @@ function CardProduto({ prod, noCarrinho, fornecedor }: CardProdutoProps) {
                         )
                         }
 
-                        
+
                     </div>
                 </div>
             </div>

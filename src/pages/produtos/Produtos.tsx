@@ -1,7 +1,5 @@
 import ListaProdutos from '../../components/produtos/listaProdutos/ListaProdutos';
 import { Carousel } from 'flowbite-react';
-import bannerNutri from '../../assets/banner_nutrividas.svg'
-import bannerEco from '../../assets/banner_ecobag.svg'
 import './Produtos.css'
 import { Link } from 'react-router-dom';
 
@@ -10,17 +8,7 @@ function Produtos() {
         <>
             <div className='relative w-full dark:bg-black'>
                 <div className='relative h-[500px] overflow-hidden dark:bg-black'>
-                    <Carousel className='bg-white h-full dark:bg-black'>
-                        <img
-                            alt="..."
-                            src={bannerNutri}
-                            className=''
-                        />
-                        <img
-                            alt="..."
-                            src={bannerEco}
-                        />
-                    </Carousel>
+                    
                 </div>
             </div>
 
