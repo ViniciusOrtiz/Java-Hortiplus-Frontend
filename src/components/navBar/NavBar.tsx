@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { BsFillMoonFill } from 'react-icons/bs'
 import { toastAlerta } from '../../utils/toastAlerta'
 import { AuthContext } from '../../contexts/AuthContext'
+import LocalStorageService from '../../services/TokenService'
 
 
 function Navbar() {
@@ -32,6 +33,10 @@ function Navbar() {
 
   const { usuario, handleLogout, quantidadeItems } = useContext(AuthContext)
 
+  const usuarioLogado = LocalStorageService.get('user');
+
+  const token = usuarioLogado.token;
+
   function logout() {
     handleLogout()
     toastAlerta('Usuário deslogado com sucesso', 'sucesso')
@@ -41,7 +46,7 @@ function Navbar() {
   //Alterando navbar caso o Usuario esteja logado
   let navbarComponent
 
-  if (usuario.token === "") {
+  if (token === "") {
     navbarComponent = (
       <>
         <header className="fixed inset-x-0 top-0 z-50 bg-white dark:bg-black transition-all ease-in-out duration-600">

@@ -5,6 +5,7 @@ import Produto from '../../../models/Produto';
 import Categoria from '../../../models/Categoria';
 import { buscar, atualizar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../utils/toastAlerta';
+import LocalStorageService from '../../../services/TokenService';
 
 
 function FormularioProduto() {
@@ -13,7 +14,10 @@ function FormularioProduto() {
     const { id } = useParams<{ id: string }>();
 
     const { usuario, handleLogout } = useContext(AuthContext);
-    const token = usuario.token;
+
+    const usuarioLogado = LocalStorageService.get('user');
+
+    const token = usuarioLogado.token;
 
     const [categorias, setCategorias] = useState<Categoria[]>([]);
 
@@ -60,10 +64,10 @@ function FormularioProduto() {
     }
 
     useEffect(() => {
-        if (token === '') {
-            toastAlerta('Você precisa estar logado', 'info');
-            navigate('/');
-        }
+        // if (token === '') {
+        //     toastAlerta('Você precisa estar logado', 'info');
+        //     navigate('/');
+        // }
     }, [token]);
 
     useEffect(() => {
@@ -87,7 +91,7 @@ function FormularioProduto() {
             ...produto,
             [e.target.name]: e.target.value,
             categoria: categoria,
-            usuario: usuario,
+            usuario: usuarioLogado,
         });
     }
 

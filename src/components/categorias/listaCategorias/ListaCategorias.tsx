@@ -6,6 +6,7 @@ import Categoria from '../../../models/Categoria';
 import { buscar } from '../../../services/Service';
 import CardCategorias from '../cardCategorias/CardCategorias';
 import { toastAlerta } from '../../../utils/toastAlerta';
+import LocalStorageService from '../../../services/TokenService';
 
 
 function ListaCategorias() {
@@ -14,7 +15,9 @@ function ListaCategorias() {
   let navigate = useNavigate();
 
   const { usuario, handleLogout } = useContext(AuthContext);
-  const token = usuario.token;
+  const usuarioLogado = LocalStorageService.get('user');
+
+    const token = usuarioLogado.token;
 
   async function buscarCategorias() {
     try {

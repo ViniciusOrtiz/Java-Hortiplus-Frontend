@@ -4,6 +4,7 @@ import { AuthContext } from '../../../contexts/AuthContext'
 import { buscar, deletar } from '../../../services/Service'
 import Produto from '../../../models/Produto'
 import { toastAlerta } from '../../../utils/toastAlerta'
+import LocalStorageService from '../../../services/TokenService'
 
 function DeletarProduto() {
     const [produto, setProduto] = useState<Produto>({} as Produto)
@@ -13,7 +14,10 @@ function DeletarProduto() {
     const { id } = useParams<{ id: string }>()
 
     const { usuario, handleLogout } = useContext(AuthContext)
-    const token = usuario.token
+
+    const usuarioLogado = LocalStorageService.get('user');
+
+    const token = usuarioLogado.token
 
     async function buscarPorId(id: string) {
         try {

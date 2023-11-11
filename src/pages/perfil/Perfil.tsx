@@ -6,12 +6,17 @@ import { buscar } from '../../../src/services/Service';
 import { toastAlerta } from '../../utils/toastAlerta'
 import Produto from '../../models/Produto'
 import CardProduto from '../../components/produtos/cardProduto/CardProduto';
+import LocalStorageService from '../../services/TokenService';
 
 function Perfil() {
   let navigate = useNavigate()
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const { usuario, handleLogout, itemsComprados, pedido} = useContext(AuthContext)
-  const token = usuario.token
+
+  const usuarioLogado = LocalStorageService.get('user');
+
+  const token = usuarioLogado.token
+
   const isCliente = usuario.tipo == 'cliente'
 
 
@@ -35,7 +40,7 @@ function Perfil() {
   }, [produtos.length]);
 
   useEffect(() => {
-    if (usuario.token === "") {
+    if (token === "") {
       toastAlerta('Você precisa estar logado', 'erro')
       navigate("/login")
     }

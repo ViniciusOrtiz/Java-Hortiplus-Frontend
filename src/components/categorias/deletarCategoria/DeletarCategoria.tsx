@@ -5,6 +5,7 @@ import { buscar, deletar } from '../../../services/Service'
 import { toastAlerta } from '../../../utils/toastAlerta'
 import Tema from '../../../models/Categoria'
 import categoriaIcon from '../../../assets/categorias.png'
+import LocalStorageService from '../../../services/TokenService'
 
 function DeletarCategoria() {
     const [tema, setTema] = useState<Tema>({} as Tema)
@@ -14,7 +15,9 @@ function DeletarCategoria() {
     const { id } = useParams<{ id: string }>()
 
     const { usuario, handleLogout } = useContext(AuthContext)
-    const token = usuario.token
+    const usuarioLogado = LocalStorageService.get('user');
+
+    const token = usuarioLogado.token
 
     async function buscarPorId(id: string) {
         try {

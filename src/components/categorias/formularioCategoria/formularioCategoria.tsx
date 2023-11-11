@@ -4,6 +4,7 @@ import { AuthContext } from '../../../contexts/AuthContext';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
 import { toastAlerta } from '../../../utils/toastAlerta';
 import Categoria from '../../../models/Categoria';
+import LocalStorageService from '../../../services/TokenService';
 
 function FormularioCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
@@ -13,7 +14,8 @@ function FormularioCategoria() {
   const { id } = useParams<{ id: string }>();
 
   const { usuario, handleLogout } = useContext(AuthContext);
-  const token = usuario.token;
+  const token = LocalStorageService.get('user')?.token;
+  console.log(token)
 
   async function buscarPorId(id: string) {
     await buscar(`/categorias/${id}`, setCategoria, {
@@ -90,10 +92,10 @@ function FormularioCategoria() {
   }
 
   useEffect(() => {
-    if (token === '') {
-      toastAlerta('Você precisa estar logado', 'info');
-      navigate('/login');
-    }
+    // if (token === '') {
+    //   toastAlerta('Você precisa estar logado', 'info');
+    //   navigate('/login');
+    // }
   }, [token]);
 
   return (

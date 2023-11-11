@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import UsuarioLogin from "../../models/UsuarioLogin";
 import { RotatingLines } from "react-loader-spinner";
+import LocalStorageService from "../../services/TokenService";
 
 function Login() {
   let navigate = useNavigate();
@@ -14,11 +15,15 @@ function Login() {
     {} as UsuarioLogin
   );
 
+  const usuarioLogado = LocalStorageService.get('user');
+
+  const token = usuarioLogado.token
+
   const { usuario, handleLogin } = useContext(AuthContext);
   const { isLoading } = useContext(AuthContext);
 
   useEffect(() => {
-    if (usuario.token !== "") {
+    if (token !== "") {
       navigate("/home");
     }
   }, [usuario]);

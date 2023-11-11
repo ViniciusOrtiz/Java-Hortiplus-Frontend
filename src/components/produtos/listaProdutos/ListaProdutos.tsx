@@ -6,6 +6,7 @@ import { buscar } from '../../../services/Service';
 import { toastAlerta } from '../../../utils/toastAlerta';
 import CardProduto from '../cardProduto/CardProduto';
 import Produto from '../../../models/Produto';
+import LocalStorageService from '../../../services/TokenService';
 
 function ListaProdutos() {
     const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -13,7 +14,9 @@ function ListaProdutos() {
     let navigate = useNavigate();
 
     const { usuario, handleLogout } = useContext(AuthContext);
-    const token = usuario.token;
+    const usuarioLogado = LocalStorageService.get('user');
+
+    const token = usuarioLogado.token;
 
     useEffect(() => {
         if (token === '') {

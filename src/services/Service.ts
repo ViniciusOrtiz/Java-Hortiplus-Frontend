@@ -1,7 +1,8 @@
 import axios from "axios";
+import LocalStorageService from "./TokenService";
 
 const api = axios.create({
-  baseURL: 'https://nutrividas.onrender.com/'
+  baseURL: 'http://localhost:8080/'
 })
 
 export const cadastrarUsuario = async(url: string, dados: Object, setDados: Function) => {
@@ -11,6 +12,10 @@ export const cadastrarUsuario = async(url: string, dados: Object, setDados: Func
 
 export const login = async(url: string, dados: Object, setDados: Function) => {
   const resposta = await api.post(url, dados)
+  console.log(resposta)
+  if(resposta.data.token) {
+    LocalStorageService.set('user', resposta.data)
+  }
   setDados(resposta.data)
 }
 
