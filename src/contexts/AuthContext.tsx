@@ -4,6 +4,7 @@ import UsuarioLogin from "../models/UsuarioLogin"
 import { login } from "../services/Service"
 import { toastAlerta } from "../utils/toastAlerta"
 import Produto from "../models/Produto"
+import LocalStorageService from "../services/TokenService"
 
 interface AuthContextProps {
     usuario: UsuarioLogin
@@ -55,6 +56,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
 
     function handleLogout() {
+        LocalStorageService.remove('user')
         setUsuario({
             id: 0,
             nome: "",

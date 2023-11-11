@@ -2,7 +2,7 @@ import axios from "axios";
 import LocalStorageService from "./TokenService";
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/'
+  baseURL: 'http://15.228.163.229:8080/'
 })
 
 export const cadastrarUsuario = async(url: string, dados: Object, setDados: Function) => {

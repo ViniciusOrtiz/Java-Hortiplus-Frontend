@@ -15,7 +15,7 @@ function Perfil() {
 
   const usuarioLogado = LocalStorageService.get('user');
 
-  const token = usuarioLogado.token
+  const token = usuarioLogado.token ?? ""
 
   const isCliente = usuario.tipo == 'cliente'
 

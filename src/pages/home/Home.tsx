@@ -1,14 +1,13 @@
 import "./Home.css";
 import heroImage from "../../assets/hero.svg";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
+import LocalStorageService from "../../services/TokenService";
 
 function Home() {
-  const { usuario } = useContext(AuthContext);
-  const isAdmin = usuario.tipo == "admin";
-  const isFornecedor = usuario.tipo == "fornecedor"
-  const isCliente = usuario.tipo == "cliente"
+  const usuarioLogado = LocalStorageService.get('user')
+  const isAdmin = usuarioLogado.tipo == "admin";
+  const isFornecedor = usuarioLogado.tipo == "fornecedor"
+  const isCliente = usuarioLogado.tipo == "cliente"
 
   return (
     <>

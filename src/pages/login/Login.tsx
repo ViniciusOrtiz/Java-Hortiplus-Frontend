@@ -17,7 +17,7 @@ function Login() {
 
   const usuarioLogado = LocalStorageService.get('user');
 
-  const token = usuarioLogado.token
+  const token = usuarioLogado.token ?? ""
 
   const { usuario, handleLogin } = useContext(AuthContext);
   const { isLoading } = useContext(AuthContext);

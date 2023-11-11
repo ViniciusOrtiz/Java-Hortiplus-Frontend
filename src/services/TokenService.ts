@@ -7,4 +7,8 @@ export default class LocalStorageService {
     static get(key: string) {
         return JSON.parse(localStorage.getItem(key) || '{}')
     }
+
+    static remove(key: string) {
+        localStorage.removeItem(key)
+    }
 }

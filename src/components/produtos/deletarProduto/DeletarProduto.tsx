@@ -17,7 +17,7 @@ function DeletarProduto() {
 
     const usuarioLogado = LocalStorageService.get('user');
 
-    const token = usuarioLogado.token
+    const token = usuarioLogado.token ?? ""
 
     async function buscarPorId(id: string) {
         try {

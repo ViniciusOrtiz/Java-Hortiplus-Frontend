@@ -16,7 +16,7 @@ function ListaProdutos() {
     const { usuario, handleLogout } = useContext(AuthContext);
     const usuarioLogado = LocalStorageService.get('user');
 
-    const token = usuarioLogado.token;
+    const token = usuarioLogado.token ?? "";
 
     useEffect(() => {
         if (token === '') {
